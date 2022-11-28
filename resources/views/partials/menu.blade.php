@@ -106,6 +106,16 @@
                             </a>
                         </li>
                     @endcan
+                        @can('member_access')
+                            <li class="c-sidebar-nav-item">
+                                <a href="{{ route('admin.members.email',[1]) }}" class="c-sidebar-nav-link {{ request()->is("admin/members/template") ? "c-active" : "" }}">
+                                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                    </i>
+                                    {{ trans('cruds.template.title') }}
+                                </a>
+                            </li>
+                        @endcan
                 </ul>
             </li>
         @endcan

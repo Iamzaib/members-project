@@ -45,6 +45,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('members/destroy', 'MembersController@massDestroy')->name('members.massDestroy');
     Route::get('members/resend_email/{id}', 'MembersController@resend_email')->name('members.resend_email');
     Route::get('members/print_details/{id}', 'MembersController@print_details')->name('members.print_details');
+    Route::get('members/template/{template}', 'MembersController@template')->name('members.email');
+    Route::put('members/save_template/{template}', 'MembersController@update_template')->name('templates.update');
     Route::post('members/media', 'MembersController@storeMedia')->name('members.storeMedia');
     Route::post('members/register', 'MembersController@SignUpStore')->name('members.SignUpStore');
     Route::post('members/ckmedia', 'MembersController@storeCKEditorImages')->name('members.storeCKEditorImages');

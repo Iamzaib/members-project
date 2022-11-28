@@ -12,6 +12,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Models\VerifyUser;
+use Illuminate\Notifications\Notifiable;
 
 class Member extends Model implements HasMedia
 {
@@ -19,6 +20,7 @@ class Member extends Model implements HasMedia
     use InteractsWithMedia;
     use Auditable;
     use HasFactory;
+    use Notifiable;
 
     public const GENDER_RADIO = [
         'male'   => 'M',
@@ -75,6 +77,8 @@ class Member extends Model implements HasMedia
         'unsubscribe_date',
         'remark',
         'iban',
+        'terms_1',
+        'terms_2',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -136,5 +140,19 @@ class Member extends Model implements HasMedia
     public function verifyMember()
     {
         return $this->hasOne(VerifyUser::class);
+    }
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return array|string
+     */
+    public function routeNotificationForMail($notification)
+    {
+        // Return email address only...
+        return $this->enamel;
+
+//        // Return email address and name...
+//        return [$this->email_address => $this->name];
     }
 }

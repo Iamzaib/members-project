@@ -25,6 +25,25 @@
                             {!! $chart2->renderHtml() !!}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    Verjaardagen van leden deze maand
+                                </div>
+
+                                <div class="card-body">
+                                    <table>
+                                        <tr>
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

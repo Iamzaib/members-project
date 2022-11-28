@@ -34,7 +34,7 @@ class BirthdayEmailNotification extends Notification
             ->greeting('Hi,')
             ->line($this->data['line_1'])
             ->line($this->data['line_2'])
-            ->action(config('app.name'), config('app.url'))
+            ->action(config('app.name'), $this->data['url'])
             ->line('Thank you')
             ->line(config('app.name') . ' Team')
             ->salutation(' ');

@@ -9,6 +9,7 @@ use App\Http\Requests\StoreMemberPublicRequest;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Mail\VerifyMailMember;
+use App\Models\MailTemplate;
 use App\Models\Member;
 use App\Models\VerifyUser;
 use Carbon\Carbon;
@@ -170,7 +171,19 @@ class MembersController extends Controller
 
         return view('admin.members.edit', compact('member'));
     }
+    public function template(MailTemplate $template)
+    {
+        abort_if(Gate::denies('member_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        return view('admin.members.template-edit', compact('template'));
+    }
+
+    public function update_template(Request $request, MailTemplate $template)
+    {
+        $template->update($request->all());
+
+        return redirect()->route('admin.members.email',[1]);
+    }
     public function update(UpdateMemberRequest $request, Member $member)
     {
         $member->update($request->all());

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Member;
+use Carbon\Carbon;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HomeController
 {
     public function index()
     {
+        $members_birthday_this_month=Member::whereMonth('date_of_birth', Carbon::now()->format('m'))->get();
+
         $settings1 = [
             'chart_title'           => 'Member Email Verified',
             'chart_type'            => 'bar',
@@ -44,6 +48,6 @@ class HomeController
 
         $chart2 = new LaravelChart($settings2);
 
-        return view('home', compact('chart1', 'chart2'));
+        return view('home', compact('chart1', 'chart2','members_birthday_this_month'));
     }
 }
