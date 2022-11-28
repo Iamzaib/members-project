@@ -14,7 +14,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Family extends Model implements HasMedia
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     use InteractsWithMedia;
     use Auditable;
     use HasFactory;

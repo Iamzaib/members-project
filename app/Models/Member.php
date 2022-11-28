@@ -11,30 +11,31 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use App\Models\VerifyUser;
 
 class Member extends Model implements HasMedia
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     use InteractsWithMedia;
     use Auditable;
     use HasFactory;
 
     public const GENDER_RADIO = [
-        'male'   => 'Male',
-        'female' => 'Female',
+        'male'   => 'M',
+        'female' => 'V',
     ];
 
     public const TYPE_OF_DONOR_SELECT = [
-        'Financial'  => 'Financial',
-        'Non-paying' => 'Non-paying',
+        'Financial'  => 'Betalend',
+        'Non-paying' => 'Niet betalend',
     ];
 
     public const STATUS_SELECT = [
-        'Registered' => 'Registered',
-        'Verified'   => 'Verified',
-        'Active'     => 'Active',
-        'Not Active' => 'Not Active',
-        'Deceased'   => 'Deceased',
+        'Registered' => 'Geregistreerd',
+        'Verified'   => 'Geverifieerd',
+        'Active'     => 'Actief',
+        'Not Active' => 'Niet actief',
+        'Deceased'   => 'Overleden',
     ];
 
     public $table = 'members';
@@ -46,6 +47,7 @@ class Member extends Model implements HasMedia
 
     protected $dates = [
         'date_of_birth',
+        'email_verified_at',
         'unsubscribe_date',
         'created_at',
         'updated_at',
@@ -64,7 +66,9 @@ class Member extends Model implements HasMedia
         'town',
         'land',
         'enamel',
+        'amount',
         'email_checked',
+        'email_verified_at',
         'date_of_birth',
         'gender',
         'birthplace',
@@ -128,5 +132,9 @@ class Member extends Model implements HasMedia
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+    public function verifyMember()
+    {
+        return $this->hasOne(VerifyUser::class);
     }
 }

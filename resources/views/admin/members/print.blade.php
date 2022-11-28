@@ -1,18 +1,71 @@
-@extends('layouts.admin')
-@section('content')
-
+    <style>
+        .table-bordered, .table-bordered td, .table-bordered th {
+            border: 1px solid;
+            border-top-color: currentcolor;
+            border-right-color: currentcolor;
+            border-bottom-color: currentcolor;
+            border-left-color: currentcolor;
+            border-color: #d8dbe0;
+            text-align: left;
+        }
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #4f5d73;
+        }
+        .table-bordered {
+            border: 1px solid #dee2e6;
+        }
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            background-color: transparent;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        table th{
+            text-align: left;
+        }
+        table {
+            border-collapse: collapse;
+        }
+        .table-striped tbody tr:nth-of-type(2n+1) {
+            background-color: rgba(0,0,21,.05);
+        }
+        .table-striped tbody tr:nth-of-type(2n+1) {
+            background-color: rgba(0,0,0,.05);
+        }
+    </style>
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.member.title') }}
+
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <th>
+                    <img src="https://campusbadr.nl/wp-content/uploads/2022/02/campusbadrlogo_transparant_bruin_2.png" alt="" style="width:300px ">
+                </th>
+                <th align="left">
+                    <h2 style="text-align: center">Donateurs Formulier</h2>
+                    <br>
+                    van<br>
+                    {{$member->first_name}} {{ $member->surname }}
+                </th>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
     <div class="card-body">
         <div class="form-group">
+            @if(isset($member->print)&&$member->print===false)
             <div class="form-group">
                 <a class="btn btn-default" href="{{ route('admin.members.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
+            @endif
             <table class="table table-bordered table-striped">
                 <tbody>
                     <tr>
@@ -188,10 +241,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>
+                        <th style="padding: 40px 0;">
                             {{ trans('cruds.member.fields.signed_document') }}
                         </th>
-                        <td>
+                        <td style="padding: 40px 0;">
                             @if($member->signed_document)
                                 <a href="{{ $member->signed_document->getUrl() }}" target="_blank">
                                     {{ trans('global.view_file') }}
@@ -201,15 +254,13 @@
                     </tr>
                 </tbody>
             </table>
+                @if(isset($member->print)&&$member->print===false)
             <div class="form-group">
                 <a class="btn btn-default" href="{{ route('admin.members.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
+                @endif
             </div>
         </div>
     </div>
 </div>
-
-
-
-@endsection

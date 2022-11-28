@@ -108,8 +108,8 @@ return [
     'url'         => 'Het formaat van :attribute is ongeldig.',
     'uuid'        => ':attribute moet een geldige UUID zijn.',
     'custom'      => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'enamel' => [
+            'unique' => 'Emails is reeds in gebruik',
         ],
     ],
     'reserved_word'                  => ':attribute bevat een gereserveerd woord',

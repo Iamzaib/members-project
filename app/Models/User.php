@@ -20,7 +20,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class User extends Authenticatable implements HasMedia
 {
-    use SoftDeletes;
+   // use SoftDeletes;
     use Notifiable;
     use InteractsWithMedia;
     use Auditable;

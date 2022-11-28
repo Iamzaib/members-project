@@ -23,6 +23,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css" rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
+    <style>
+        .dropzone {
+            min-height: 10px!important;
+            border: 2px solid rgba(0,0,0,0.3);
+            background: white;
+            padding: 0!important;
+        }
+    </style>
 </head>
 
 <body class="c-app">

@@ -1,42 +1,41 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('content')
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.member.title_singular') }}
+        <h2 class="text-center">Ledenregistratie</h2>
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.members.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("members.SignUpStore") }}" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="required" for="ledenid">{{ trans('cruds.member.fields.ledenid') }}</label>
-                        <input class="form-control {{ $errors->has('ledenid') ? 'is-invalid' : '' }}" type="text" name="ledenid" id="ledenid" value="{{ old('ledenid', $ledenid) }}" disabled>
-                        <input type="hidden" name="ledenid" value="{{$ledenid}}">
-                        @if($errors->has('ledenid'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('ledenid') }}
-                            </div>
-                        @endif
-                        <span class="help-block">{{ trans('cruds.member.fields.ledenid_helper') }}</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="required">{{ trans('cruds.member.fields.status') }}</label>
-                        <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>
-                            <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                            @foreach(App\Models\Member::STATUS_SELECT as $key => $label)
-                                <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
-                            @endforeach
-                        </select>
-                        @if($errors->has('status'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('status') }}
-                            </div>
-                        @endif
-                        <span class="help-block">{{ trans('cruds.member.fields.status_helper') }}</span>
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label class="required" for="ledenid">{{ trans('cruds.member.fields.ledenid') }}</label>--}}
+{{--                        <input class="form-control {{ $errors->has('ledenid') ? 'is-invalid' : '' }}" type="text" name="ledenid" id="ledenid" value="{{ old('ledenid', '') }}" required>--}}
+{{--                        @if($errors->has('ledenid'))--}}
+{{--                            <div class="invalid-feedback">--}}
+{{--                                {{ $errors->first('ledenid') }}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        <span class="help-block">{{ trans('cruds.member.fields.ledenid_helper') }}</span>--}}
+{{--                    </div>--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label class="required">{{ trans('cruds.member.fields.status') }}</label>--}}
+{{--                        <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status" required>--}}
+{{--                            <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>--}}
+{{--                            @foreach(App\Models\Member::STATUS_SELECT as $key => $label)--}}
+{{--                                <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                        @if($errors->has('status'))--}}
+{{--                            <div class="invalid-feedback">--}}
+{{--                                {{ $errors->first('status') }}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        <span class="help-block">{{ trans('cruds.member.fields.status_helper') }}</span>--}}
+{{--                    </div>--}}
                     <div class="form-group">
                         <label>{{ trans('cruds.member.fields.type_of_donor') }}</label>
                         <select class="form-control {{ $errors->has('type_of_donor') ? 'is-invalid' : '' }}" name="type_of_donor" id="type_of_donor">
@@ -112,16 +111,19 @@
                         @endif
                         <span class="help-block">{{ trans('cruds.member.fields.town_helper') }}</span>
                     </div>
-                    <div class="form-group">
-                        <label for="land">{{ trans('cruds.member.fields.land') }}</label>
-                        <input class="form-control {{ $errors->has('land') ? 'is-invalid' : '' }}" type="text" name="land" id="land" value="{{ old('land', '') }}">
-                        @if($errors->has('land'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('land') }}
-                            </div>
-                        @endif
-                        <span class="help-block">{{ trans('cruds.member.fields.land_helper') }}</span>
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="land">{{ trans('cruds.member.fields.land') }}</label>--}}
+{{--                        <input class="form-control {{ $errors->has('land') ? 'is-invalid' : '' }}" type="text" name="land" id="land" value="{{ old('land', '') }}">--}}
+{{--                        @if($errors->has('land'))--}}
+{{--                            <div class="invalid-feedback">--}}
+{{--                                {{ $errors->first('land') }}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        <span class="help-block">{{ trans('cruds.member.fields.land_helper') }}</span>--}}
+{{--                    </div>--}}
+
+                </div>
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="enamel">{{ trans('cruds.member.fields.enamel') }}</label>
                         <input class="form-control {{ $errors->has('enamel') ? 'is-invalid' : '' }}" type="text" name="enamel" id="enamel" value="{{ old('enamel', '') }}">
@@ -132,8 +134,6 @@
                         @endif
                         <span class="help-block">{{ trans('cruds.member.fields.enamel_helper') }}</span>
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="form-group">
                         <label class="required" for="date_of_birth">{{ trans('cruds.member.fields.date_of_birth') }}</label>
                         <input class="form-control date {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}" type="text" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth') }}" required>
@@ -159,17 +159,17 @@
                         @endif
                         <span class="help-block">{{ trans('cruds.member.fields.gender_helper') }}</span>
                     </div>
-                    <div class="form-group">
-                        <label for="photograph">{{ trans('cruds.member.fields.photograph') }}</label>
-                        <div class="needsclick dropzone {{ $errors->has('photograph') ? 'is-invalid' : '' }}" id="photograph-dropzone">
-                        </div>
-                        @if($errors->has('photograph'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('photograph') }}
-                            </div>
-                        @endif
-                        <span class="help-block">{{ trans('cruds.member.fields.photograph_helper') }}</span>
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label for="photograph">{{ trans('cruds.member.fields.photograph') }}</label>--}}
+{{--                        <div class="needsclick dropzone {{ $errors->has('photograph') ? 'is-invalid' : '' }}" id="photograph-dropzone">--}}
+{{--                        </div>--}}
+{{--                        @if($errors->has('photograph'))--}}
+{{--                            <div class="invalid-feedback">--}}
+{{--                                {{ $errors->first('photograph') }}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        <span class="help-block">{{ trans('cruds.member.fields.photograph_helper') }}</span>--}}
+{{--                    </div>--}}
                     <div class="form-group">
                         <label for="birthplace">{{ trans('cruds.member.fields.birthplace') }}</label>
                         <input class="form-control {{ $errors->has('birthplace') ? 'is-invalid' : '' }}" type="text" name="birthplace" id="birthplace" value="{{ old('birthplace', '') }}">
@@ -180,16 +180,7 @@
                         @endif
                         <span class="help-block">{{ trans('cruds.member.fields.birthplace_helper') }}</span>
                     </div>
-                    <div class="form-group">
-                        <label for="remark">{{ trans('cruds.member.fields.remark') }}</label>
-                        <textarea class="form-control {{ $errors->has('remark') ? 'is-invalid' : '' }}" name="remark" id="remark">{{ old('remark') }}</textarea>
-                        @if($errors->has('remark'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first('remark') }}
-                            </div>
-                        @endif
-                        <span class="help-block">{{ trans('cruds.member.fields.remark_helper') }}</span>
-                    </div>
+
                     <div class="form-group">
                         <label for="iban">{{ trans('cruds.member.fields.iban') }}</label>
                         <input class="form-control {{ $errors->has('iban') ? 'is-invalid' : '' }}" type="text" name="iban" id="iban" value="{{ old('iban', '') }}">
@@ -211,25 +202,25 @@
                         <span class="help-block">{{ trans('cruds.member.fields.amount_helper') }}</span>
                     </div>
                     <div class="form-group">
-                        <label for="signed_document">{{ trans('cruds.member.fields.signed_document') }}</label>
-                        <div class="needsclick dropzone {{ $errors->has('signed_document') ? 'is-invalid' : '' }}" id="signed_document-dropzone">
-                        </div>
-                        @if($errors->has('signed_document'))
+                        {!! htmlFormSnippet() !!}
+                        @if($errors->has('g-recaptcha-response'))
                             <div class="invalid-feedback">
-                                {{ $errors->first('signed_document') }}
+                                {{ $errors->first('g-recaptcha-response') }}
                             </div>
                         @endif
-                        <span class="help-block">{{ trans('cruds.member.fields.signed_document_helper') }}</span>
                     </div>
-                    <div class="form-group">
+
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group text-center">
                         <button class="btn btn-danger" type="submit">
-                            {{ trans('global.save') }}
+                            verzenden
                         </button>
                     </div>
                 </div>
             </div>
 
-
+<?php //print_r($errors,true); ?>
         </form>
     </div>
 </div>
@@ -241,7 +232,7 @@
 @section('scripts')
 <script>
     Dropzone.options.photographDropzone = {
-    url: '{{ route('admin.members.storeMedia') }}',
+    url: '{{ route('members.storeMedia') }}',
     maxFilesize: 5, // MB
     acceptedFiles: '.jpeg,.jpg,.png,.gif',
     maxFiles: 1,
@@ -291,56 +282,6 @@
 
         return _results
     }
-}
-</script>
-<script>
-    Dropzone.options.signedDocumentDropzone = {
-    url: '{{ route('admin.members.storeMedia') }}',
-    maxFilesize: 5, // MB
-    maxFiles: 1,
-    addRemoveLinks: true,
-    headers: {
-      'X-CSRF-TOKEN': "{{ csrf_token() }}"
-    },
-    params: {
-      size: 5
-    },
-    success: function (file, response) {
-      $('form').find('input[name="signed_document"]').remove()
-      $('form').append('<input type="hidden" name="signed_document" value="' + response.name + '">')
-    },
-    removedfile: function (file) {
-      file.previewElement.remove()
-      if (file.status !== 'error') {
-        $('form').find('input[name="signed_document"]').remove()
-        this.options.maxFiles = this.options.maxFiles + 1
-      }
-    },
-    init: function () {
-@if(isset($member) && $member->signed_document)
-      var file = {!! json_encode($member->signed_document) !!}
-          this.options.addedfile.call(this, file)
-      file.previewElement.classList.add('dz-complete')
-      $('form').append('<input type="hidden" name="signed_document" value="' + file.file_name + '">')
-      this.options.maxFiles = this.options.maxFiles - 1
-@endif
-    },
-     error: function (file, response) {
-         if ($.type(response) === 'string') {
-             var message = response //dropzone sends it's own error messages in string
-         } else {
-             var message = response.errors.file
-         }
-         file.previewElement.classList.add('dz-error')
-         _ref = file.previewElement.querySelectorAll('[data-dz-errormessage]')
-         _results = []
-         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-             node = _ref[_i]
-             _results.push(node.textContent = message)
-         }
-
-         return _results
-     }
 }
 </script>
 <script>

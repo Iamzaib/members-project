@@ -13,11 +13,8 @@ Route::get('/home', function () {
         return view('thank-you',$data);
     })->name('member_verify_response');
 Route::get('/members/verify/{token}', 'Admin\MembersController@verifyUser')->name('member_verify_link');
-Route::get('members/resend_email/{id}', 'Admin\MembersController@resend_email')->name('members.resend_email');
 Route::get('/members-registration', 'Admin\MembersController@signUpCreate')->name('member_signup');
-Route::post('members/register', 'Admin\MembersController@SignUpStore')->name('members.SignUpStore');
-Route::post('members/media', 'Admin\MembersController@storeMedia')->name('members.storeMedia');
-Route::post('members/ckmedia', 'Admin\MembersController@storeCKEditorImages')->name('members.storeCKEditorImages');
+
 Route::get('userVerification/{token}', 'UserVerificationController@approve')->name('userVerification');
 Auth::routes();
 

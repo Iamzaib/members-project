@@ -108,46 +108,6 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 25,
-                'title' => 'family_create',
-            ],
-            [
-                'id'    => 26,
-                'title' => 'family_edit',
-            ],
-            [
-                'id'    => 27,
-                'title' => 'family_show',
-            ],
-            [
-                'id'    => 28,
-                'title' => 'family_delete',
-            ],
-            [
-                'id'    => 29,
-                'title' => 'family_access',
-            ],
-            [
-                'id'    => 30,
-                'title' => 'mandaat_create',
-            ],
-            [
-                'id'    => 31,
-                'title' => 'mandaat_edit',
-            ],
-            [
-                'id'    => 32,
-                'title' => 'mandaat_show',
-            ],
-            [
-                'id'    => 33,
-                'title' => 'mandaat_delete',
-            ],
-            [
-                'id'    => 34,
-                'title' => 'mandaat_access',
-            ],
-            [
-                'id'    => 35,
                 'title' => 'profile_password_edit',
             ],
         ];

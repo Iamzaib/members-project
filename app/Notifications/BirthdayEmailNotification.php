@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class DataChangeEmailNotification extends Notification
+class BirthdayEmailNotification extends Notification
 {
     use Queueable;
 
@@ -28,12 +28,12 @@ class DataChangeEmailNotification extends Notification
 
     public function getMessage()
     {
-        
+
         return (new MailMessage())
-            ->subject(config('app.name') . ': entry ' . $this->data['action'] . ' in ' . $this->data['model_name'])
+            ->subject($this->data['subject'])
             ->greeting('Hi,')
-            ->line('We willen u laten weten dat de in ' . $this->data['model_name'].' is '. $this->data['action'] )
-            ->line('Logt u in om meer informatie te zien')
+            ->line($this->data['line_1'])
+            ->line($this->data['line_2'])
             ->action(config('app.name'), config('app.url'))
             ->line('Thank you')
             ->line(config('app.name') . ' Team')

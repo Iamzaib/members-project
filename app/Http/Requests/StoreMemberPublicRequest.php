@@ -7,23 +7,26 @@ use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class StoreMemberRequest extends FormRequest
+class StoreMemberPublicRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('member_create');
+        return true;
     }
 
     public function rules()
     {
         return [
-            'ledenid' => [
-                'string',
-                'required',
-                'unique:members',
-            ],
-            'status' => [
-                'required',
+//            'ledenid' => [
+//                'string',
+//                'required',
+//                'unique:members',
+//            ],
+//            'status' => [
+//                'required',
+//            ],
+            recaptchaFieldName() => [
+                recaptchaRuleName()
             ],
             'first_name' => [
                 'string',

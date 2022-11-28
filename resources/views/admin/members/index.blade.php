@@ -21,9 +21,9 @@
                     <th width="10">
 
                     </th>
-                    <th>
-                        {{ trans('cruds.member.fields.id') }}
-                    </th>
+{{--                    <th>--}}
+{{--                        {{ trans('cruds.member.fields.id') }}--}}
+{{--                    </th>--}}
                     <th>
                         {{ trans('cruds.member.fields.ledenid') }}
                     </th>
@@ -34,14 +34,14 @@
                         {{ trans('cruds.member.fields.first_name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.member.fields.house_number') }}
+                        {{ trans('cruds.member.fields.email_checked') }}
                     </th>
                     <th>
-                        {{ trans('cruds.member.fields.zip_code') }}
+                        {{ trans('cruds.member.fields.print_pdf') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.member.fields.photograph') }}
-                    </th>
+{{--                    <th>--}}
+{{--                        {{ trans('cruds.member.fields.photograph') }}--}}
+{{--                    </th>--}}
                     <th>
                         &nbsp;
                     </th>
@@ -49,9 +49,9 @@
                 <tr>
                     <td>
                     </td>
-                    <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                    </td>
+{{--                    <td>--}}
+{{--                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">--}}
+{{--                    </td>--}}
                     <td>
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
@@ -70,12 +70,12 @@
                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                     </td>
                     <td>
-                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+{{--                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">--}}
                     </td>
                     <td>
                     </td>
-                    <td>
-                    </td>
+{{--                    <td>--}}
+{{--                    </td>--}}
                 </tr>
             </thead>
         </table>
@@ -129,13 +129,13 @@
     ajax: "{{ route('admin.members.index') }}",
     columns: [
       { data: 'placeholder', name: 'placeholder' },
-{ data: 'id', name: 'id' },
+// { data: 'id', name: 'id' },
 { data: 'ledenid', name: 'ledenid' },
 { data: 'status', name: 'status' },
 { data: 'first_name', name: 'first_name' },
-{ data: 'house_number', name: 'house_number' },
-{ data: 'zip_code', name: 'zip_code' },
-{ data: 'photograph', name: 'photograph', sortable: false, searchable: false },
+{ data: 'email_checked', name: 'email_checked' },
+{ data: 'print_pdf', name: 'print_pdf' },
+// { data: 'photograph', name: 'photograph', sortable: false, searchable: false },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
@@ -147,7 +147,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 let visibleColumnsIndexes = null;
 $('.datatable thead').on('input', '.search', function () {
       let strict = $(this).attr('strict') || false
@@ -172,4 +172,5 @@ table.on('column-visibility.dt', function(e, settings, column, state) {
 });
 
 </script>
+
 @endsection
