@@ -75,6 +75,14 @@ class StoreMemberPublicRequest extends FormRequest
             'iban' => [
                 'string',
                 'nullable',
+            ]
+            , 'terms_1' => [
+                'string',
+                'nullable',
+            ]
+            , 'terms_2' => [
+                'string',
+                'required',
             ],
         ];
     }

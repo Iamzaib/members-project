@@ -10,6 +10,7 @@ use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Mail\VerifyMailMember;
 use App\Models\MailTemplate;
+use App\Models\Mandaat;
 use App\Models\Member;
 use App\Models\VerifyUser;
 use Carbon\Carbon;
@@ -138,7 +139,15 @@ class MembersController extends Controller
             'member_id' => $member->id,
             'token' => sha1(time())
         ]);
-        \Mail::to($member->enamel)->send(new VerifyMailMember($member));
+        if($member->type_of_donor=='Financial') {
+            Mandaat::create([
+                'ledenid_id' => $member->ledenid,
+                'status' => 'Active',
+                'mandaadnr' => $member->ledenid,
+                'start_mandaat' => date(config('panel.date_format'))
+            ]);
+        }
+        Mail::to($member->enamel)->send(new VerifyMailMember($member));
         return redirect()->route('admin.members.index');
     }
     public function SignUpStore(StoreMemberPublicRequest $request)
@@ -157,6 +166,14 @@ class MembersController extends Controller
             'member_id' => $member->id,
             'token' => sha1(time())
         ]);
+        if($member->type_of_donor=='Financial'){
+            Mandaat::create([
+                'ledenid_id' => $member->ledenid,
+                'status' => 'Active',
+                'mandaadnr' => $member->ledenid,
+                'start_mandaat' => date(config('panel.date_format'))
+            ]);
+        }
         Mail::to($member->enamel)->send(new VerifyMailMember($member));
         //$status = "Your Registration is completed please check your email to verify. Thank You";
         $status = "Uw registratie is voltooid, controleer uw e-mail om te verifiëren. ";

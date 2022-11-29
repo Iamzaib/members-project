@@ -163,6 +163,10 @@ return [
             'deleted_at_helper'       => ' ',
             'signed_document'         => 'Ondertekend document',
             'signed_document_helper'  => ' ',
+            'terms_1'                 => 'Ik ga akkoord met automatische incasso',
+            'terms_1_helper'          => ' ',
+            'terms_2'                 => 'Ik ga akkoord met de algemene voorwaarden',
+            'terms_2_helper'          => ' ',
         ],
     ],
     'membersManagement' => [

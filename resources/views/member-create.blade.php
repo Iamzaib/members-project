@@ -38,7 +38,7 @@
 {{--                    </div>--}}
                     <div class="form-group">
                         <label>{{ trans('cruds.member.fields.type_of_donor') }}</label>
-                        <select class="form-control {{ $errors->has('type_of_donor') ? 'is-invalid' : '' }}" name="type_of_donor" id="type_of_donor">
+                        <select class="form-control {{ $errors->has('type_of_donor') ? 'is-invalid' : '' }}" name="type_of_donor" id="type_of_donor" onchange="showTerms(this.value)">
                             <option value disabled {{ old('type_of_donor', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
                             @foreach(App\Models\Member::TYPE_OF_DONOR_SELECT as $key => $label)
                                 <option value="{{ $key }}" {{ old('type_of_donor', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
@@ -201,6 +201,29 @@
                         @endif
                         <span class="help-block">{{ trans('cruds.member.fields.amount_helper') }}</span>
                     </div>
+                    <div class="terms" style="display: none">
+                        <div class="form-group" id="terms_1_div">
+                            <input class="form-check d-inline {{ $errors->has('terms_1') ? 'is-invalid' : '' }}" type="checkbox" name="terms_1" id="terms_1" value="{{ old('terms_1', 1) }}">
+                            <label for="terms_1">{{ trans('cruds.member.fields.terms_1') }}</label>
+                            @if($errors->has('terms_1'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('terms_1') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.member.fields.terms_1_helper') }}</span>
+                        </div>
+                    </div>
+                        <div class="form-group" id="terms_2_div">
+                            <input class="form-check d-inline {{ $errors->has('terms_2') ? 'is-invalid' : '' }}" type="checkbox" required name="terms_2" id="terms_2" value="{{ old('terms_2', 1) }}">
+                            <label for="terms_2" class="form-check-label">{{ trans('cruds.member.fields.terms_2') }}</label>
+                            @if($errors->has('terms_2'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('terms_2') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.member.fields.terms_2_helper') }}</span>
+                        </div>
+
                     <div class="form-group">
                         {!! htmlFormSnippet() !!}
                         @if($errors->has('g-recaptcha-response'))
@@ -299,5 +322,27 @@
     //         }
     //     });
     // });
+    $(function (){
+
+        // if($('#type_of_donor').val()==='Financial'){
+        //     $('#amount_div').show();
+        // }else{
+        //     $('#amount_div').hide();
+        // }
+        $('#type_of_donor').on('change',function (){
+            if($(this).val()==='Financial'){
+                $('.terms').show();
+            }else{
+                $('.terms').hide();
+            }
+        });
+    });
+    function showTerms(v){
+        if(v==='Financial'){
+            $('.terms').show();
+        }else{
+            $('.terms').hide();
+        }
+    }
 </script>
 @endsection
